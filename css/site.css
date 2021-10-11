@@ -59,3 +59,13 @@ footer .social>a:hover {
     bottom: 0;
     width: 100%;
 }
+
+.fizzDisplay {
+    font-weight: bolder;
+    color: var(--secondary-color)
+}
+
+.buzzDisplay {
+    font-weight: bolder;
+    color: rgb(10, 136, 195);
+}

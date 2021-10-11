@@ -1,21 +1,81 @@
 //displays a message to the user
-function displayMessage() {
-    //declare our variable
-    let msg = "";
+function getNumbers() {
 
-    //pull the value from the input box
-    msg = document.getElementById("message").value;
+    let startValue = 0;
+    let endValue = 100;
 
-    //alert the user
-    alert(msg);
+    //get the numbers from the UI
+    startValue = document.getElementById("startValue").value;
+    endValue = document.getElementById("endValue").value;
+
+    //validate our numbers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    //check to see if they are numbers
+    if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        //both numbers and integers
+
+        //display the numbers from start value to end value
+        let numbers = generateNumbers(startValue, endValue);
+
+        displayNumbers(numbers)
+    } else {
+        //One or MORE are not integers
+    }
 }
 
+//generate numbers from startvalue to endvalue
+function generateNumbers(startValue, endValue) {
 
-function displayMessage2() {
+    //0,1,2,3,4...
+    let numbers = [];
 
-    let msg = "";
+    //loop over the numbers until we reach the end value
+    for (let index = startValue; index <= endValue; index++) {
 
-    msg = document.getElementById("message").value;
+        //add each number to the array
+        numbers.push(index);
+    }
+    //returns the array of numbers
+    return numbers;
 
-    Swal.fire(msg);
+}
+
+//display the numbers to the page
+function displayNumbers(numbers) {
+
+    //0 first indiex value
+    //99 last index value
+    //length = 100
+
+    // 0,1,2,3,4,5,6
+    let startValue = numbers[0];
+    let endIndex = numbers.length; //=100
+
+    let tableBody = document.getElementById("results");
+    //Clears out previous results
+    tableBody.innerHTML = "";
+
+    for (let index = 1; index < endIndex; index++) {
+
+        let tableRow = "";
+        //get the actual number
+        let number = numbers[index];
+
+        if (number % 3 == 0) {
+            //the number is even
+            tableRow = `<tr><td class="fizzDisplay">Fizz</td></tr>`;
+        } else if (number % 5 == 0) {
+            //the number is odd
+            tableRow = `<tr><td class="buzzDisplay">Buzz</td></tr>`;
+
+        } else {
+            tableRow = `<tr><td>${number}</td></tr>`;
+
+        }
+
+
+        tableBody.innerHTML += tableRow;
+    }
 }
